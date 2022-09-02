@@ -1,0 +1,1 @@
+alert('ciao sono il js del backend');
