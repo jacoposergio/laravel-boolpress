@@ -35,7 +35,7 @@
     @csrf
     @method('DELETE')
     
-    <input class="btn btn-danger" type="submit" value="Cancella Post">
+    <input class="btn btn-danger" type="submit" value="Cancella Post" onClick="return confirm('Sei sicuro di voler cancellare?')">
 </form>
     
 @endsection

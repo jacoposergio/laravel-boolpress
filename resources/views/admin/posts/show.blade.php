@@ -17,8 +17,8 @@
 <form class="mt-2" action="{{ route('admin.posts.destroy', ['post'=> $post->id ]) }}" method="post">
     @csrf
     @method('DELETE')
-    
-    <input class="btn btn-danger" type="submit" value="Cancella Post">
+
+    <input class="btn btn-danger" type="submit" value="Cancella Post" onClick="return confirm('Sei sicuro di voler cancellare?')">
 </form>
 
 @endsection
