@@ -5,8 +5,22 @@
 
 <h1>{{ $post->title}}</h1>
 
-<h6>Creato il: {{ $post->created_at}}</h6>
-<h6>Aggiornato il: {{ $post->updated_at}}</h6>
+{{-- <h6>Creato il: {{ $post->created_at->format('l j F Y')}}</h6> --}}
+
+@if ($created_days_ago > 0)
+<h6>Creato {{ $created_days_ago }} giorn{{$created_days_ago >1 ? 'i' : 'o'}} fa</h6>
+@else
+<div>Creato oggi</div>
+@endif
+
+{{-- <h6>Aggiornato il: {{ $post->updated_at}}</h6> --}}
+
+@if ($created_days_ago > 0)
+<h6>Aggiornato {{ $created_days_ago }} giorn{{$created_days_ago >1 ? 'i' : 'o'}} fa</h6>
+@else
+<div>Aggiornato oggi</div>
+@endif
+
 <h6>Slug: {{ $post->slug}}</h6>
 
 <h3 class="mt-3">Contenuto:</h3>
