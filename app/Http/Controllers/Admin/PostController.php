@@ -98,9 +98,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        $categories = Category::all();
 
         $data = [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ];
         
         return view('admin.posts.edit', $data);
@@ -116,6 +118,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $request -> validate($this->getValidationRules());
+        
         $form_data = $request->all();
         $post_to_update = Post::findOrFail($id);
         
