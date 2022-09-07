@@ -13,12 +13,16 @@ class AddCategoryIdToPost extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            // aggiungiamo la colonna category_id
-            $table->unsignedBigInteger('category_id')->nullable();
-            // aggiungere la relazione
-            $table->foreign('category_id')->references('id')->on('categories');
-        });
+        // Schema::table('posts', function (Blueprint $table) {
+        //     // aggiungiamo la colonna category_id
+        //     $table->unsignedBigInteger('category_id')
+        //     ->nullable()
+        //     ->after('slug');
+        //     // aggiungere la relazione
+        //     $table->foreign('category_id')
+        //     ->references('id')
+        //     ->onDelete('set null');
+        // });
     }
 
     /**
@@ -28,11 +32,11 @@ class AddCategoryIdToPost extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            // cancellare la relazione
-            $table->dropForeign('posts_category_id_foreign');
-            //cancellare la colonna
-            $table->dropColumn('category_id');
-        });
+        // Schema::table('posts', function (Blueprint $table) {
+        //     // cancellare la relazione
+        //     $table->dropForeign('posts_category_id_foreign');
+        //     //cancellare la colonna
+        //     $table->dropColumn('category_id');
+        // });
     }
 }
