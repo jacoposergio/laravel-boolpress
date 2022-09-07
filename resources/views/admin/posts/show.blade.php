@@ -23,8 +23,11 @@
 
 <h6>Slug: {{ $post->slug}}</h6>
 
+<h6>Categoria: {{ $post->category ? $post->category->name : 'nessuna'}}</h6>
+
 <h3 class="mt-3">Contenuto:</h3>
 <p>{{ $post->content}}</p>
+
 
 <a class="btn btn-primary mt-2" href="{{ route('admin.posts.edit', ['post'=> $post->id ]) }}">Modifica post</a>
 
