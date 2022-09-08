@@ -22,6 +22,12 @@
 @endif
 
 <h6>Slug: {{ $post->slug}}</h6>
+<h6>Tags:
+    @foreach ($post->tags as $tag)
+        {{ $tag->name}}{{ !$loop->last ? ',' : ''}}
+        
+    @endforeach
+</h6>
 
 <h6>Categoria: {{ $post->category ? $post->category->name : 'nessuna'}}</h6>
 
