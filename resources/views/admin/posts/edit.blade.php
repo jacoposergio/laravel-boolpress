@@ -37,9 +37,39 @@
     </select>
   </div>
 
- <input type="submit" value="Salva Post">
+  <div>
+    <h6>Tags:</h6>
+    @foreach ($tags as $tag)
+  @if ($errors->any())
+      <div class="form-check">
+          <input class="form-check-input"
+            type="checkbox" value="{{ $tag->id }}" 
+            id="tag-{{ $tag->id }}" name="tags[]"
+            {{ in_array($tag->id, old('tags', [])) ? 'checked' : ''}}
+          >
+          <label class="form-check-label" for="tag-{{ $tag->id }}">
+            {{ $tag->name }}
+          </label>
+      </div>
+      @else
+      <div class="form-check">
+        <input class="form-check-input"
+          type="checkbox" value="{{ $tag->id }}" 
+          id="tag-{{ $tag->id }}" name="tags[]"
+          {{ $post->tags->contains($tag) ? 'checked' : ''}}
+        >
+        <label class="form-check-label" for="tag-{{ $tag->id }}">
+          {{ $tag->name }}
+        </label>
+    </div>
+     @endif
+  @endforeach
+</div>
 
-</form>
+  <input type="submit" value="Salva Post">
+ </form>
+  
+  
 
 <form class="mt-2" action="{{ route('admin.posts.destroy', ['post'=> $post->id ]) }}" method="post">
     @csrf
