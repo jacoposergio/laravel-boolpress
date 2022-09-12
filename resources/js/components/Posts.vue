@@ -19,7 +19,24 @@
                 <!-- end col  -->
 
             </div>
+            
+                  <nav aria-label="Page navigation example mt-5">
+                <ul class="pagination">
+                    <li class="page-item" :class="{'disabled' : currentPaginationPage == 1}">
+                          <a class="page-link"  @click="getPosts(currentPaginationPage - 1)" href="#">Previous</a>
+                        </li>
+
+                        <li v-for="pageNumber in lastPaginationPage" :key="pageNumber" class="page-item" :class="{'active' : pageNumber == currentPaginationPage}">
+                            <a @click="getPosts(pageNumber)" class="page-link" href="#">{{pageNumber}}</a>
+                        </li>
+
+                        <li class="page-item" :class="{'disabled' : currentPaginationPage == lastPaginationPage}">
+                          <a class="page-link"  @click="getPosts(currentPaginationPage + 1)" href="#">Next</a>
+                        </li>
+                </ul>
+            </nav>
       </div>
+
     </section>
 </template>
 
@@ -29,7 +46,10 @@ export default {
     name: 'Posts',
     data() {
         return {
-            posts: []
+            pageTitle: 'I nostri post',
+            posts: [],
+            currentPaginationPage: 1,
+            lastPaginationPage: null
         };
     },
     methods: {
@@ -39,15 +59,21 @@ export default {
              }
              return text;
         },
-        getPosts() {
-                axios.get('http://127.0.0.1:8000/api/posts')
+        getPosts(pageNumber) {
+                axios.get('http://127.0.0.1:8000/api/posts', {
+                    params:{
+                        page: pageNumber
+                    }
+                })
                 .then((response) => {
-                     this.posts = response.data.results;
+                     this.posts = response.data.results.data;
+                     this.currentPaginationPage = response.data.results.current_page;
+                     this.lastPaginationPage = response.data.results.last_page;
             });
         }
     },
     mounted() {
-         this.getPosts();
+         this.getPosts(1);
     }
 }
 </script>
