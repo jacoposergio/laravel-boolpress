@@ -1922,14 +1922,17 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return text;
+    },
+    getPosts: function getPosts() {
+      var _this = this;
+
+      axios.get('http://127.0.0.1:8000/api/posts').then(function (response) {
+        _this.posts = response.data.results;
+      });
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get('http://127.0.0.1:8000/api/posts').then(function (response) {
-      _this.posts = response.data.results;
-    });
+    this.getPosts();
   }
 });
 

@@ -38,13 +38,16 @@ export default {
                 return text.slice(0,75) + '...';
              }
              return text;
+        },
+        getPosts() {
+                axios.get('http://127.0.0.1:8000/api/posts')
+                .then((response) => {
+                     this.posts = response.data.results;
+            });
         }
     },
     mounted() {
-        axios.get('http://127.0.0.1:8000/api/posts')
-        .then((response) => {
-            this.posts = response.data.results;
-        });
+         this.getPosts();
     }
 }
 </script>
