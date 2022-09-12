@@ -1,8 +1,16 @@
-
-
 <template>
-    <div>
-        <a href="/admin">Admin privata</a>
-        <h1>ciao sono stampato con vue</h1>
-    </div>
+    <main>
+        <Posts />
+    </main>
 </template>
+
+<script>
+    import Posts from '../components/Posts.vue';
+
+export default {
+    name: 'App',
+    components: {
+        Posts
+    }
+}
+</script>
