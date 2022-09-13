@@ -1,7 +1,8 @@
 <template>
     <div>
-        <h2>ciao sono in homepage</h2>
-        <Posts/>
+        <div class="container">
+            <h2>ciao sono in homepage</h2>
+        </div>
     </div>
 </template>
 
