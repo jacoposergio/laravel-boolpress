@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import HomePage from './pages/HomePage.vue';
 import AboutPage from './pages/AboutPage.vue';
+import BlogPage from './pages/BlogPage.vue';
 
 
 // regole per il routing
@@ -20,6 +21,11 @@ const router = new VueRouter({
                 path: '/about',
                 name: 'about',
                 component: AboutPage
+            },
+            { 
+                path: '/blog',
+                name: 'blog',
+                component: BlogPage
             }
       ]
 });

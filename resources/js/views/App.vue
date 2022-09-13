@@ -1,6 +1,6 @@
 <template>
     <main>
-        <Posts />
+      <router-view></router-view>
     </main>
 </template>
 
@@ -10,7 +10,7 @@
 export default {
     name: 'App',
     components: {
-        Posts
+        
     }
 }
 </script>
