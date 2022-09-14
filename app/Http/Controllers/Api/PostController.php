@@ -19,4 +19,25 @@ class PostController extends Controller
 
        return response()->json($data);
     }
+
+
+
+    public function show($slug) {
+        //   cercare nel database il post con colonna slug = $slug 
+        $post = Post::where('slug', '=', $slug)->with(['tags','category'])->first();
+       
+
+    if ($post) {
+        $data = [
+            'success'=> true,
+            'results'=> $post,
+           ];
+    } else {
+        $data = [
+            'success'=> false,
+           ];
+    }
+
+       return response()->json($data);
+    }
 }
