@@ -2052,14 +2052,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SinglePost',
+  data: function data() {
+    return {
+      post: null
+    };
+  },
   mounted: function mounted() {
+    var _this = this;
+
     axios.get('/api/posts/' + this.$route.params.slug).then(function (response) {
-      console.log("", response);
+      _this.post = response.data.results;
     });
   }
 });
@@ -2169,7 +2173,17 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }, [_vm._v(_vm._s(_vm.truncateText(post.content)))])])])]);
+    }, [_vm._v(_vm._s(_vm.truncateText(post.content)))]), _vm._v(" "), _c("router-link", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        to: {
+          name: "single-post",
+          params: {
+            slug: post.slug
+          }
+        }
+      }
+    }), _vm._v("Leggi")], 1)])]);
   }), 0), _vm._v(" "), _c("nav", {
     attrs: {
       "aria-label": "Page navigation example mt-5"
@@ -2369,7 +2383,12 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("h2", [_vm._v("ciao sono un single post")]), _vm._v("\n    " + _vm._s(_vm.$route.params.slug) + "\n")]);
+  }, [_vm.post ? _c("div", [_c("h2", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _vm.post.tags.length > 0 ? _c("div", _vm._l(_vm.post.tags, function (tag) {
+    return _c("span", {
+      key: tag.id,
+      staticClass: "badge bg-warning text-dark mr-1"
+    }, [_vm._v(_vm._s(tag.name))]);
+  }), 0) : _vm._e(), _vm._v(" "), _vm.post.category ? _c("div", [_c("hr"), _vm._v(" "), _c("h6", [_vm._v("Categoria: " + _vm._s(_vm.post.category.name))])]) : _vm._e(), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))])]) : _vm._e()]);
 };
 
 var staticRenderFns = [];
