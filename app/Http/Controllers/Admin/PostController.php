@@ -61,7 +61,7 @@ class PostController extends Controller
         
         if(isset($form_data ['tags'])){
             $img_path = Storage::put('post-covers', $form_data['image']);
-           dd($img_path);
+            $form_data['cover'] = $img_path;
         }
 
        $new_post = new Post();
@@ -197,6 +197,9 @@ class PostController extends Controller
         return [
             'title' => 'required|max:255',
             'content' => 'required|max:60000',
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
+            'image' => 'nullable'
         ];
         
     }

@@ -5,7 +5,9 @@
 
 <h1>{{ $post->title}}</h1>
 
-{{-- <h6>Creato il: {{ $post->created_at->format('l j F Y')}}</h6> --}}
+@if ($post->cover)
+  <img class="w-50" src="{{ asset('/storage/'. $post->cover) }}" alt="{{ $post->title}}">
+@endif
 
 @if ($created_days_ago > 0)
 <h6>Creato {{ $created_days_ago }} giorn{{$created_days_ago >1 ? 'i' : 'o'}} fa</h6>
@@ -15,8 +17,8 @@
 
 {{-- <h6>Aggiornato il: {{ $post->updated_at}}</h6> --}}
 
-@if ($created_days_ago > 0)
-<h6>Aggiornato {{ $created_days_ago }} giorn{{$created_days_ago >1 ? 'i' : 'o'}} fa</h6>
+@if ($updated_days_ago > 0)
+<h6>Aggiornato {{ $updated_days_ago }} giorn{{$updated_days_ago >1 ? 'i' : 'o'}} fa</h6>
 @else
 <div>Aggiornato oggi</div>
 @endif
