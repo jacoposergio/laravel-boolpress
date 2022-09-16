@@ -21,7 +21,7 @@
 <h6>Aggiornato {{ $updated_days_ago }} giorn{{$updated_days_ago >1 ? 'i' : 'o'}} fa</h6>
 @else
 <div>Aggiornato oggi</div>
-@endif
+@endif  
 
 <h6>Slug: {{$post->slug}}</h6>
 <h6>Tags:
